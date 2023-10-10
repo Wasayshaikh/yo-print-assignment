@@ -36,7 +36,7 @@ Route::post('/uploads', function (Request $request){
             ]
         );
         foreach ($chunks as $key => $chunk) {
-        $data = array_map('str_getcsv', $chunk);
+        $data = array_map('str_getcsv', preg_replace('/&#[0-9]+;/', '', $chunk));
             if($key == 0){
                 // $header = $data[0];
                 unset($data[0]);
